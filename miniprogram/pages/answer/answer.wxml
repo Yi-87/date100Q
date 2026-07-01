@@ -1,0 +1,13 @@
+<view class="page">
+  <view wx:if="{{status === 'editing'}}" class="answer-form">
+    <textarea placeholder="写下你的答案..." value="{{content}}" bindinput="onInput" maxlength="2000" />
+    <text class="counter">{{content.length}}/2000</text>
+    <button bindtap="onSubmit" disabled="{{submitting}}">提交</button>
+  </view>
+  <view wx:elif="{{status === 'waiting'}}" class="waiting">
+    <waiting-card />
+  </view>
+  <view wx:elif="{{status === 'revealed'}}" class="done">
+    <text>已解锁！返回查看对方答案</text>
+  </view>
+</view>

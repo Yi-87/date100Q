@@ -1,0 +1,32 @@
+.page {
+  padding: 32rpx;
+  min-height: 100vh;
+}
+.answer-form textarea {
+  width: 100%;
+  min-height: 400rpx;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  border: 1rpx solid var(--rule);
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+.counter {
+  display: block;
+  text-align: right;
+  color: var(--muted);
+  font-size: 24rpx;
+  margin: 12rpx 0 32rpx;
+}
+.answer-form button {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 48rpx;
+}
+.done {
+  text-align: center;
+  color: var(--good);
+  font-size: 30rpx;
+  margin-top: 120rpx;
+}

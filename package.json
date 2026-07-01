@@ -1,0 +1,12 @@
+{
+  "name": "askbae-mini-cloudfunctions",
+  "version": "0.1.0",
+  "description": "恋爱结婚100问 - 云函数 TDD",
+  "scripts": {
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --config jest.config.js --watchAll"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

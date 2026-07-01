@@ -1,0 +1,50 @@
+.card {
+  width: 100%;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  border: 1rpx solid var(--rule);
+  box-sizing: border-box;
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+.dimension {
+  font-size: 24rpx;
+  color: var(--muted);
+  background: var(--bg2);
+  padding: 4rpx 16rpx;
+  border-radius: 24rpx;
+}
+.sensitivity {
+  font-size: 24rpx;
+  color: var(--warn);
+}
+.question-text {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 40rpx;
+}
+.actions {
+  display: flex;
+  gap: 20rpx;
+}
+.actions button {
+  flex: 1;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+}
+.actions button:first-child {
+  background: var(--accent);
+  color: #fff;
+}
+.swap {
+  background: var(--bg2);
+  color: var(--muted);
+  border: 1rpx solid var(--rule);
+}

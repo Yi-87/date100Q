@@ -1,0 +1,21 @@
+<view class="page">
+  <view wx:if="{{status === 'loading'}}" class="loading">
+    <text>加载中...</text>
+  </view>
+  <view wx:elif="{{status === 'no_couple'}}" class="empty">
+    <text>你还没和 TA 配对哦</text>
+    <button bindtap="onGoPair">去配对</button>
+  </view>
+  <view wx:elif="{{status === 'l3_locked'}}" class="l3">
+    <l3-gate questionId="{{question.question_id}}" readyOpenids="{{readyOpenids}}" bind:ready="onL3Ready" />
+  </view>
+  <view wx:elif="{{status === 'pending'}}" class="today">
+    <question-card question="{{question}}" bind:start="onStartAnswer" bind:swap="onSwap" />
+  </view>
+  <view wx:elif="{{status === 'half_answered'}}" class="waiting">
+    <waiting-card question="{{question}}" />
+  </view>
+  <view wx:elif="{{status === 'revealed'}}" class="revealed">
+    <text>今日已解锁，去历史查看</text>
+  </view>
+</view>

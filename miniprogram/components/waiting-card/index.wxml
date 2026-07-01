@@ -1,0 +1,6 @@
+<view class="card">
+  <text class="emoji">💌</text>
+  <text class="title">等待 TA 的回答</text>
+  <text class="dots">{{dots}}</text>
+  <text class="hint">答案会在双方都回答后一起揭晓</text>
+</view>

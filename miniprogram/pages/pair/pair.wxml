@@ -1,0 +1,15 @@
+<view class="page">
+  <view wx:if="{{role === 'none'}}" class="choose">
+    <button bindtap="onCreateInvite">邀请 TA</button>
+    <button bindtap="onJoinMode">我有邀请码</button>
+  </view>
+  <view wx:elif="{{role === 'creator'}}" class="invite">
+    <text class="code">{{myCode}}</text>
+    <text class="expiry">10 分钟内有效</text>
+    <button bindtap="onCopy">复制邀请码</button>
+  </view>
+  <view wx:elif="{{role === 'joiner'}}" class="join">
+    <input type="number" maxlength="6" placeholder="输入 6 位邀请码" bindinput="onCodeInput" />
+    <button bindtap="onJoin">加入</button>
+  </view>
+</view>

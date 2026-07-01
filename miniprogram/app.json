@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/answer/answer",
+    "pages/pair/pair",
+    "pages/history/history",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fbf7f2",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "恋爱结婚100问",
+    "backgroundColor": "#fbf7f2"
+  },
+  "usingComponents": {
+    "question-card": "/components/question-card/index",
+    "l3-gate": "/components/l3-gate/index",
+    "waiting-card": "/components/waiting-card/index"
+  }
+}

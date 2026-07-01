@@ -1,0 +1,33 @@
+.card {
+  width: 100%;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 64rpx 32rpx;
+  text-align: center;
+  border: 1rpx solid var(--rule);
+  box-sizing: border-box;
+}
+.emoji {
+  font-size: 64rpx;
+  display: block;
+  margin-bottom: 24rpx;
+}
+.title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12rpx;
+}
+.dots {
+  display: block;
+  font-size: 40rpx;
+  color: var(--accent2);
+  margin-bottom: 24rpx;
+  min-height: 48rpx;
+}
+.hint {
+  display: block;
+  font-size: 26rpx;
+  color: var(--muted);
+}

@@ -1,0 +1,16 @@
+page {
+  --bg: #fbf7f2;
+  --bg2: #f1ebe2;
+  --ink: #2a221c;
+  --muted: #6f655c;
+  --rule: #d8cfc2;
+  --accent: #c95f4a;
+  --accent2: #d9a16a;
+  --good: #5b8a3a;
+  --warn: #b07a2c;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}

@@ -1,0 +1,50 @@
+.page {
+  padding: 32rpx;
+  min-height: 100vh;
+}
+.empty {
+  text-align: center;
+  margin-top: 200rpx;
+  color: var(--muted);
+  font-size: 30rpx;
+}
+.month-group {
+  margin-bottom: 48rpx;
+}
+.month-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+.history-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 16rpx;
+  border: 1rpx solid var(--rule);
+}
+.q-text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 20rpx;
+}
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.my, .partner {
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+.my {
+  color: var(--accent);
+}
+.partner {
+  color: var(--accent2);
+}

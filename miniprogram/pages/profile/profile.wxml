@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="stage-section">
+    <text class="label">当前阶段</text>
+    <view class="stage-buttons">
+      <button class="{{stage === 'love' ? 'active' : ''}}" data-stage="love" bindtap="onStageChange">恋爱版</button>
+      <button class="{{stage === 'pre_marriage' ? 'active' : ''}}" data-stage="pre_marriage" bindtap="onStageChange">婚前版</button>
+      <button class="{{stage === 'marriage' ? 'active' : ''}}" data-stage="marriage" bindtap="onStageChange">维护版</button>
+    </view>
+  </view>
+  <view class="danger">
+    <button wx:if="{{!showUnbind}}" bindtap="onUnbind" class="unbind-btn">解绑</button>
+    <view wx:else class="unbind-confirm">
+      <text>确定要解绑吗？</text>
+      <view class="confirm-buttons">
+        <button bindtap="onUnbind" class="confirm">确定</button>
+        <button bindtap="onCancelUnbind">取消</button>
+      </view>
+    </view>
+  </view>
+</view>

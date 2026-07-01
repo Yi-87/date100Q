@@ -1,0 +1,15 @@
+<view class="page">
+  <view wx:if="{{items.length === 0}}" class="empty">
+    <text>还没有解锁的记录</text>
+  </view>
+  <view wx:for="{{months}}" wx:key="*this" class="month-group">
+    <text class="month-label">{{index}}</text>
+    <view wx:for="{{item}}" wx:key="question_id" wx:for-item="q" class="history-card">
+      <text class="q-text">{{q.text}}</text>
+      <view class="answers">
+        <text class="my">我：{{q.my_answer}}</text>
+        <text class="partner">TA：{{q.partner_answer}}</text>
+      </view>
+    </view>
+  </view>
+</view>

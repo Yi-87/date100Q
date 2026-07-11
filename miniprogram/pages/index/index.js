@@ -23,8 +23,12 @@ Page({
         readyOpenids: q.ready_openids || []
       });
     } catch (e) {
-      if (e.message === 'not paired') {
+      const errMsg = e.errMsg || e.message || '';
+      if (errMsg.indexOf('not paired') !== -1) {
         this.setData({ hasCouple: false, status: 'no_couple' });
+      } else {
+        console.error('loadToday error:', e);
+        this.setData({ status: 'error' });
       }
     }
   },

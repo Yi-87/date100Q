@@ -5,7 +5,7 @@ const fs = require('fs');
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 
 const questionsData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../../data/questions.json'), 'utf-8')
+  fs.readFileSync(path.join(__dirname, './questions.json'), 'utf-8')
 );
 
 function getTodayDate() {

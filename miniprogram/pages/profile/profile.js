@@ -4,11 +4,18 @@ Page({
   onShow() {
     api.todayQuestion().then(q => {
       if (q.stage) this.setData({ stage: q.stage });
-    }).catch(() => {});
+    }).catch(e => {
+      console.log('profile load error:', e.message);
+    });
   },
   onStageChange(e) {
     const stage = e.currentTarget.dataset.stage;
-    api.updateStage(stage).then(() => this.setData({ stage }));
+    api.updateStage(stage).then(() => {
+      this.setData({ stage });
+      wx.showToast({ title: '已更新', icon: 'success' });
+    }).catch(e => {
+      wx.showToast({ title: e.message, icon: 'none' });
+    });
   },
   onUnbind() {
     if (!this.data.showUnbind) {
@@ -22,6 +29,8 @@ Page({
       } else {
         wx.showToast({ title: '等待对方确认', icon: 'none' });
       }
+    }).catch(e => {
+      wx.showToast({ title: e.message, icon: 'none' });
     });
   },
   onCancelUnbind() {

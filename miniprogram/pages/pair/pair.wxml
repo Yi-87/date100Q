@@ -1,4 +1,5 @@
 <view class="page">
+  <view wx:if="{{errorMsg}}" class="error-msg">{{errorMsg}}</view>
   <view wx:if="{{role === 'none'}}" class="choose">
     <button bindtap="onCreateInvite">邀请 TA</button>
     <button bindtap="onJoinMode">我有邀请码</button>

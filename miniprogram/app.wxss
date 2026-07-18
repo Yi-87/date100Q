@@ -1,16 +1,64 @@
+/* ============================================
+   恋爱结婚100问 — 全局设计变量
+   Warm journal aesthetic
+   ============================================ */
+
 page {
-  --bg: #fbf7f2;
-  --bg2: #f1ebe2;
+  /* ── Color System ── */
+  --bg: #faf6f1;
+  --bg2: #f3ece3;
+  --bg-card: #fffcf8;
+  --bg-inset: #f0e8dd;
+
   --ink: #2a221c;
-  --muted: #6f655c;
-  --rule: #d8cfc2;
+  --ink2: #5c4f44;
+  --muted: #8c7e72;
+  --faint: #b5a99e;
+
+  --rule: #e4d9cc;
+  --rule-strong: #cbbdaf;
+
   --accent: #c95f4a;
+  --accent-light: #e8a89a;
+  --accent-lighter: #f5d5cc;
+  --accent-dark: #a44535;
   --accent2: #d9a16a;
+
   --good: #5b8a3a;
   --warn: #b07a2c;
+  --error: #c95f4a;
+  --info: #5a7fa0;
+
+  /* ── Typography ── */
+  --font-body: -apple-system, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  --text-xs: 22rpx;
+  --text-sm: 26rpx;
+  --text-base: 30rpx;
+  --text-lg: 34rpx;
+  --text-xl: 40rpx;
+  --text-2xl: 48rpx;
+
+  /* ── Radius ── */
+  --r-sm: 8rpx;
+  --r-md: 16rpx;
+  --r-lg: 24rpx;
+  --r-xl: 32rpx;
+  --r-full: 9999px;
+
+  /* ── CTA ── */
+  --cta-bg: var(--accent);
+  --cta-text: #fff;
+  --cta-height: 88rpx;
+
+  /* ── Surface ── */
+  --surface-warm-bg: var(--bg2);
+  --surface-warm-text: var(--ink2);
+
+  /* ── Base ── */
   background: var(--bg);
   color: var(--ink);
-  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }

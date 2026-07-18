@@ -52,7 +52,7 @@ test('question/swap: rejects if swap already used today', async () => {
   await expect(handler.main({})).rejects.toThrow('no swap remaining');
 });
 
-test('question/swap: rejects if partner already answered', async () => {
+test('question/swap: rejects if anyone already answered', async () => {
   const today = new Date().toISOString().slice(0, 10);
   seedDB('users', [{ _id: 'user_a', openid: 'openid_user_a', couple_id: 'couple_001' }]);
   seedDB('couple_rooms', [{
@@ -69,5 +69,5 @@ test('question/swap: rejects if partner already answered', async () => {
   }]);
 
   const handler = require('../../cloudfunctions/question-swap/index');
-  await expect(handler.main({})).rejects.toThrow('partner already answered');
+  await expect(handler.main({})).rejects.toThrow('already answered, cannot swap');
 });

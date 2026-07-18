@@ -6,7 +6,16 @@ exports.main = async (event) => {
   const { OPENID } = cloud.getWXContext();
   const db = cloud.database();
 
-  const dqs = await db.collection('daily_questions').doc(question_id).get();
+  const users = await db.collection('users').where({ openid: OPENID }).get();
+  if (users.data.length === 0 || !users.data[0].couple_id) {
+    throw new Error('not paired');
+  }
+
+  const coupleId = users.data[0].couple_id;
+
+  const dqs = await db.collection('daily_questions')
+    .where({ couple_id: coupleId, question_id })
+    .get();
   if (dqs.data.length === 0) {
     throw new Error('question not found');
   }
@@ -19,7 +28,7 @@ exports.main = async (event) => {
   }
 
   const answers = await db.collection('answers')
-    .where({ question_id })
+    .where({ question_id: dq._id })
     .get();
 
   const myAnswer = answers.data.find(a => a.user_openid === OPENID);

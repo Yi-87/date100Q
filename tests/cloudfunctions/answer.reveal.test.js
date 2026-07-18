@@ -25,7 +25,7 @@ test('answer/reveal: returns both answers when revealed', async () => {
   ]);
 
   const handler = require('../../cloudfunctions/answer-reveal/index');
-  const result = await handler.main({ question_id: 'dq_001' });
+  const result = await handler.main({ question_id: 'S-01' });
 
   expect(result.status).toBe('revealed');
   expect(result.my_answer).toBeDefined();
@@ -43,7 +43,7 @@ test('answer/reveal: returns waiting when half_answered', async () => {
   }]);
 
   const handler = require('../../cloudfunctions/answer-reveal/index');
-  const result = await handler.main({ question_id: 'dq_002' });
+  const result = await handler.main({ question_id: 'S-01' });
 
   expect(result.status).toBe('waiting');
 });
@@ -62,7 +62,7 @@ test('answer/reveal: L3 question hides partner answer text', async () => {
   ]);
 
   const handler = require('../../cloudfunctions/answer-reveal/index');
-  const result = await handler.main({ question_id: 'dq_003' });
+  const result = await handler.main({ question_id: 'M-01' });
 
   expect(result.status).toBe('revealed');
   expect(result.my_answer.content).toBe('我的L3答案');

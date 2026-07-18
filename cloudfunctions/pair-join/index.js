@@ -24,6 +24,15 @@ exports.main = async (event) => {
     throw new Error('invalid invite code');
   }
 
+  // 检查加入者冷却期（强制解绑后3天内不能配对）
+  const myUser = await db.collection('users').where({ openid: OPENID }).get();
+  if (myUser.data.length > 0 && myUser.data[0].cooldown_until) {
+    const cooldown = new Date(myUser.data[0].cooldown_until);
+    if (cooldown > new Date()) {
+      throw new Error('cooldown active, cannot pair until ' + myUser.data[0].cooldown_until.slice(0, 10));
+    }
+  }
+
   const coupleRoom = {
     members: [invite.creator_openid, OPENID],
     stage: 'love',

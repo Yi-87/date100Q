@@ -1,0 +1,9 @@
+{
+  "name": "test-partnerAnswer",
+  "version": "1.0.0",
+  "description": "测试用：模拟对方回答今日问题",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

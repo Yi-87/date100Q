@@ -11,13 +11,32 @@ const createMockCollection = (name, initialData = []) => {
       const record = data.find(r => r._id === id);
       return {
         get() {
-          return Promise.resolve(record ? { data: [record] } : { data: [] });
+          // 真实云环境中 doc().get() 返回 { data: record }（单个对象），不存在时抛错
+          if (!record) {
+            const err = new Error('document not found');
+            err.errCode = -1;
+            return Promise.reject(err);
+          }
+          return Promise.resolve({ data: record });
         },
         update(payload) {
           const updateData = payload.data || {};
           const idx = data.findIndex(r => r._id === id);
           if (idx >= 0) {
-            data[idx] = { ...data[idx], ...updateData };
+            // 处理 addToSet 等原子操作符
+            Object.keys(updateData).forEach(key => {
+              const val = updateData[key];
+              if (val && val._addToSet) {
+                if (!Array.isArray(data[idx][key])) {
+                  data[idx][key] = [];
+                }
+                if (!data[idx][key].includes(val._addToSet)) {
+                  data[idx][key] = [...data[idx][key], val._addToSet];
+                }
+              } else {
+                data[idx][key] = val;
+              }
+            });
             return Promise.resolve({ stats: { updated: 1 } });
           }
           return Promise.resolve({ stats: { updated: 0 } });
@@ -93,7 +112,21 @@ function createWhereChain(filtered, data) {
       const updateData = payload.data || {};
       filtered.forEach(r => {
         const idx = data.findIndex(d => d._id === r._id);
-        if (idx >= 0) data[idx] = { ...data[idx], ...updateData };
+        if (idx >= 0) {
+          Object.keys(updateData).forEach(key => {
+            const val = updateData[key];
+            if (val && val._addToSet) {
+              if (!Array.isArray(data[idx][key])) {
+                data[idx][key] = [];
+              }
+              if (!data[idx][key].includes(val._addToSet)) {
+                data[idx][key] = [...data[idx][key], val._addToSet];
+              }
+            } else {
+              data[idx][key] = val;
+            }
+          });
+        }
       });
       return Promise.resolve({ stats: { updated: filtered.length } });
     },
@@ -131,16 +164,31 @@ const mockDB = {
 
 // 模拟 cloud 对象
 jest.mock('wx-server-sdk', () => {
-  return {
+  const mockCloud = {
     init: jest.fn(),
+    DYNAMIC_CURRENT_ENV: 'DYNAMIC_CURRENT_ENV',
     database: () => mockDB,
     callFunction: jest.fn(),
     getWXContext: () => ({
       OPENID: 'test_openid_' + Math.random().toString(36).slice(2, 8),
       APPID: 'test_appid',
       UNIONID: 'test_unionid'
-    })
+    }),
+    openapi: {
+      auth: {
+        code2Session: jest.fn()
+      }
+    }
   };
+  // command 对象需要通过 database() 调用获取，这里模拟 _.addToSet
+  Object.defineProperty(mockDB, 'command', {
+    get() {
+      return {
+        addToSet: (val) => ({ _addToSet: val })
+      };
+    }
+  });
+  return mockCloud;
 });
 
 // 辅助函数：重置所有 mock 数据库

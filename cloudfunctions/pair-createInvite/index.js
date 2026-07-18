@@ -10,6 +10,14 @@ exports.main = async (event) => {
     throw new Error('already paired');
   }
 
+  // 检查冷却期（强制解绑后3天内不能配对）
+  if (existing.data.length > 0 && existing.data[0].cooldown_until) {
+    const cooldown = new Date(existing.data[0].cooldown_until);
+    if (cooldown > new Date()) {
+      throw new Error('cooldown active, cannot pair until ' + existing.data[0].cooldown_until.slice(0, 10));
+    }
+  }
+
   const code = String(Math.floor(100000 + Math.random() * 900000));
   const expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();
 

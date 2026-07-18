@@ -9,12 +9,32 @@
   "window": {
     "navigationBarBackgroundColor": "#fbf7f2",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "恋爱结婚100问",
+    "navigationBarTitleText": "恋爱100问",
     "backgroundColor": "#fbf7f2"
   },
   "usingComponents": {
     "question-card": "/components/question-card/index",
     "l3-gate": "/components/l3-gate/index",
     "waiting-card": "/components/waiting-card/index"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#c95f4a",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
   }
 }

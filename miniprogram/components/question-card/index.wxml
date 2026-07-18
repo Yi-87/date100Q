@@ -1,11 +1,11 @@
 <view class="card">
   <view class="meta">
-    <text class="dimension">{{question.dimension_label}}</text>
+    <text class="dimension">{{dimensionLabel}}</text>
     <text class="sensitivity">{{question.sensitivity}}</text>
   </view>
   <text class="question-text">{{question.text}}</text>
   <view class="actions">
-    <button bindtap="onStart">开始回答</button>
-    <button bindtap="onSwap" class="swap">换一题 ({{question.swap_remaining}}/1)</button>
+    <button bindtap="onStart" class="action-btn action-btn-primary">开始回答</button>
+    <button bindtap="onSwap" class="action-btn swap">换一题</button>
   </view>
 </view>

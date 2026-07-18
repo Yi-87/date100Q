@@ -1,0 +1,441 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "首页 · 今日一问",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249600000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": [
+          {
+            "domId": "cta-start-answer",
+            "targetPageId": "page-answer",
+            "transitionLabel": "开始回答"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-answer",
+      "title": "答题页 · 写下答案",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249601000,
+      "canvasData": {
+        "x": 420,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/answer.html",
+        "interactions": [
+          {
+            "domId": "cta-submit-answer",
+            "targetPageId": "page-history",
+            "transitionLabel": "提交答案"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-pair",
+      "title": "配对页 · 连接彼此",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249602000,
+      "canvasData": {
+        "x": 0,
+        "y": 602,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/pair.html",
+        "interactions": [
+          {
+            "domId": "cta-pair-success",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "配对成功"
+          },
+          {
+            "domId": "cta-enter-code",
+            "targetPageId": "page-pair-join",
+            "transitionLabel": "输入邀请码"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-pair-join",
+      "title": "输入邀请码",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249605000,
+      "canvasData": {
+        "x": 420,
+        "y": 602,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/pair-join.html",
+        "interactions": [
+          {
+            "domId": "cta-join-pair",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "确认加入"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-history",
+      "title": "历史页 · 我们的足迹",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249603000,
+      "canvasData": {
+        "x": 840,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/history.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "我的"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-profile",
+      "title": "个人页 · 恋爱版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249604000,
+      "canvasData": {
+        "x": 0,
+        "y": 1782,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/profile.html",
+        "interactions": [
+          {
+            "domId": "stage-marry",
+            "targetPageId": "page-profile-marry",
+            "transitionLabel": "切换到婚前版"
+          },
+          {
+            "domId": "stage-maintain",
+            "targetPageId": "page-profile-maintain",
+            "transitionLabel": "切换到维护版"
+          },
+          {
+            "domId": "toggle-l3",
+            "targetPageId": "page-profile-l3-on",
+            "transitionLabel": "开启 L3"
+          },
+          {
+            "domId": "cta-unpair",
+            "targetPageId": "page-unpair-confirm",
+            "transitionLabel": "解除配对"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-profile-marry",
+      "title": "个人页 · 婚前版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249607000,
+      "canvasData": {
+        "x": 0,
+        "y": 2372,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/profile-marry.html",
+        "interactions": [
+          {
+            "domId": "stage-love",
+            "targetPageId": "page-profile",
+            "transitionLabel": "切换到恋爱版"
+          },
+          {
+            "domId": "stage-maintain",
+            "targetPageId": "page-profile-maintain",
+            "transitionLabel": "切换到维护版"
+          },
+          {
+            "domId": "toggle-l3",
+            "targetPageId": "page-profile-l3-on",
+            "transitionLabel": "开启 L3"
+          },
+          {
+            "domId": "cta-unpair",
+            "targetPageId": "page-unpair-confirm",
+            "transitionLabel": "解除配对"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-profile-maintain",
+      "title": "个人页 · 维护版",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249608000,
+      "canvasData": {
+        "x": 0,
+        "y": 2962,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/profile-maintain.html",
+        "interactions": [
+          {
+            "domId": "stage-love",
+            "targetPageId": "page-profile",
+            "transitionLabel": "切换到恋爱版"
+          },
+          {
+            "domId": "stage-marry",
+            "targetPageId": "page-profile-marry",
+            "transitionLabel": "切换到婚前版"
+          },
+          {
+            "domId": "toggle-l3",
+            "targetPageId": "page-profile-l3-on",
+            "transitionLabel": "开启 L3"
+          },
+          {
+            "domId": "cta-unpair",
+            "targetPageId": "page-unpair-confirm",
+            "transitionLabel": "解除配对"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-profile-l3-on",
+      "title": "个人页 · L3 已开启",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249609000,
+      "canvasData": {
+        "x": 0,
+        "y": 3552,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/profile-l3-on.html",
+        "interactions": [
+          {
+            "domId": "stage-marry",
+            "targetPageId": "page-profile-marry",
+            "transitionLabel": "切换到婚前版"
+          },
+          {
+            "domId": "stage-maintain",
+            "targetPageId": "page-profile-maintain",
+            "transitionLabel": "切换到维护版"
+          },
+          {
+            "domId": "toggle-l3-off",
+            "targetPageId": "page-profile",
+            "transitionLabel": "关闭 L3"
+          },
+          {
+            "domId": "cta-unpair",
+            "targetPageId": "page-unpair-confirm",
+            "transitionLabel": "解除配对"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-unpair-confirm",
+      "title": "确认解除配对",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752249606000,
+      "canvasData": {
+        "x": 0,
+        "y": 1192,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/unpair-confirm.html",
+        "interactions": [
+          {
+            "domId": "cta-cancel-unpair",
+            "targetPageId": "page-profile",
+            "transitionLabel": "再想想"
+          },
+          {
+            "domId": "cta-confirm-unpair",
+            "targetPageId": "page-pair",
+            "transitionLabel": "确认解除"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-history",
+            "targetPageId": "page-history",
+            "hideEdge": true,
+            "transitionLabel": "历史"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "我的"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "恋爱结婚100问",
+    "showEdge": true
+  }
+}

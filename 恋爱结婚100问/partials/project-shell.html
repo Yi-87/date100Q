@@ -1,0 +1,46 @@
+<!-- Shared Project Shell: Tab Bar + Page Frame -->
+<!-- Mutable Slots: activeTab, pageTitle -->
+<!-- Active tab uses: color: var(--brand-primary); font-weight: 600; -->
+<!-- Inactive tab uses: color: var(--color-muted); -->
+
+<div class="min-h-screen flex flex-col" style="background: var(--color-bg);">
+
+  <!-- Status Bar Spacer (mini program style) -->
+  <div class="flex-shrink-0" style="height: 22px; background: var(--color-bg);"></div>
+
+  <!-- Navigation Bar -->
+  <header class="flex-shrink-0" style="background: var(--color-bg); border-bottom: 1px solid var(--color-rule);">
+    <div class="flex items-center justify-center px-5" style="height: 44px;">
+      <span class="font-medium" style="font-size: var(--text-lg); color: var(--color-ink);"><!-- SLOT: pageTitle --></span>
+    </div>
+  </header>
+
+  <!-- Page Content Area -->
+  <main class="flex-1 overflow-y-auto">
+    <!-- PAGE-SPECIFIC CONTENT RENDERED HERE BY LEAF PAGES -->
+  </main>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="flex-shrink-0" style="background: var(--color-bg-card); border-top: 1px solid var(--color-rule);">
+    <div class="flex items-center justify-around" style="height: 50px; padding-bottom: 8px;">
+      <a href="#" class="tab-item flex flex-col items-center justify-center flex-1 gap-0.5" style="color: var(--color-muted); text-decoration: none;" data-nav-key="index" data-dom-id="nav-home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        <span style="font-size: 10px; line-height: 1;">首页</span>
+      </a>
+      <a href="#" class="tab-item flex flex-col items-center justify-center flex-1 gap-0.5" style="color: var(--color-muted); text-decoration: none;" data-nav-key="history" data-dom-id="nav-history">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+        <span style="font-size: 10px; line-height: 1;">历史</span>
+      </a>
+      <a href="#" class="tab-item flex flex-col items-center justify-center flex-1 gap-0.5" style="color: var(--color-muted); text-decoration: none;" data-nav-key="profile" data-dom-id="nav-profile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span style="font-size: 10px; line-height: 1;">我的</span>
+      </a>
+    </div>
+  </nav>
+
+</div>
+
+<!-- ACTIVE TAB STYLING RULE -->
+<!-- When a tab's data-nav-key matches the page's activeTab, apply: -->
+<!-- style="color: var(--brand-primary); font-weight: 600;" to the <a> -->
+<!-- And style="stroke: var(--brand-primary);" to the <svg> -->

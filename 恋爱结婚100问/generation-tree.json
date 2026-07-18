@@ -1,0 +1,69 @@
+{
+  "root": {
+    "nodeId": "gen-project-shell",
+    "kind": "project-shell",
+    "pageIds": ["page-index", "page-answer", "page-pair", "page-history", "page-profile"],
+    "output": "partials/project-shell.html",
+    "sharedRegions": ["tabBar", "pageFrame"],
+    "privateRegions": [],
+    "mutableSlots": ["activeTab", "pageTitle"],
+    "status": "planned",
+    "children": [
+      {
+        "nodeId": "gen-page-index",
+        "kind": "page-leaf",
+        "pageIds": ["page-index"],
+        "output": "pages/index.html",
+        "sharedRegions": [],
+        "privateRegions": ["首页主体内容"],
+        "mutableSlots": ["activeTab"],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-answer",
+        "kind": "page-leaf",
+        "pageIds": ["page-answer"],
+        "output": "pages/answer.html",
+        "sharedRegions": [],
+        "privateRegions": ["答题表单/等待/已解锁"],
+        "mutableSlots": ["activeTab"],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-pair",
+        "kind": "page-leaf",
+        "pageIds": ["page-pair"],
+        "output": "pages/pair.html",
+        "sharedRegions": [],
+        "privateRegions": ["配对选择/邀请码/输入码"],
+        "mutableSlots": ["activeTab"],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-history",
+        "kind": "page-leaf",
+        "pageIds": ["page-history"],
+        "output": "pages/history.html",
+        "sharedRegions": [],
+        "privateRegions": ["历史记录列表/空状态"],
+        "mutableSlots": ["activeTab"],
+        "status": "planned",
+        "children": []
+      },
+      {
+        "nodeId": "gen-page-profile",
+        "kind": "page-leaf",
+        "pageIds": ["page-profile"],
+        "output": "pages/profile.html",
+        "sharedRegions": [],
+        "privateRegions": ["阶段选择/解绑区域"],
+        "mutableSlots": ["activeTab"],
+        "status": "planned",
+        "children": []
+      }
+    ]
+  }
+}

@@ -1,14 +1,12 @@
 Component({
   properties: {
     questionId: String,
-    readyOpenids: Array
-  },
-  data: {
-    myReady: false
+    readyOpenids: Array,
+    myReady: Boolean
   },
   methods: {
     onReady() {
-      this.setData({ myReady: true });
+      if (this.data.myReady) return;
       this.triggerEvent('ready');
     }
   }

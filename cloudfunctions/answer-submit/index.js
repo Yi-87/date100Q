@@ -15,13 +15,19 @@ exports.main = async (event) => {
     throw new Error('not paired');
   }
 
-  const dqs = await db.collection('daily_questions').doc(question_id).get();
+  const coupleId = users.data[0].couple_id;
+
+  const dqs = await db.collection('daily_questions')
+    .where({ couple_id: coupleId, question_id })
+    .get();
   if (dqs.data.length === 0) {
     throw new Error('question not found');
   }
+  const dq = dqs.data[0];
+  const dqId = dq._id;
 
   const existing = await db.collection('answers')
-    .where({ question_id, user_openid: OPENID })
+    .where({ question_id: dqId, user_openid: OPENID })
     .get();
   if (existing.data.length > 0) {
     throw new Error('already answered');
@@ -29,7 +35,7 @@ exports.main = async (event) => {
 
   await db.collection('answers').add({
     data: {
-      question_id,
+      question_id: dqId,
       user_openid: OPENID,
       content: content.trim(),
       submitted_at: new Date().toISOString()
@@ -37,17 +43,17 @@ exports.main = async (event) => {
   });
 
   const allAnswers = await db.collection('answers')
-    .where({ question_id })
+    .where({ question_id: dqId })
     .get();
 
   if (allAnswers.data.length >= 2) {
-    await db.collection('daily_questions').doc(question_id).update({
+    await db.collection('daily_questions').doc(dqId).update({
       data: { status: 'revealed' }
     });
     return { status: 'revealed' };
   }
 
-  await db.collection('daily_questions').doc(question_id).update({
+  await db.collection('daily_questions').doc(dqId).update({
     data: { status: 'half_answered' }
   });
   return { status: 'waiting' };

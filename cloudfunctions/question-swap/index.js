@@ -23,8 +23,13 @@ exports.main = async (event) => {
   }
 
   const coupleId = users.data[0].couple_id;
-  const rooms = await db.collection('couple_rooms').doc(coupleId).get();
-  const stage = rooms.data[0].stage || 'love';
+  let stage;
+  try {
+    const rooms = await db.collection('couple_rooms').doc(coupleId).get();
+    stage = rooms.data.stage || 'love';
+  } catch (e) {
+    throw new Error('couple room not found');
+  }
 
   const existing = await db.collection('daily_questions')
     .where({ couple_id: coupleId, date: today })
@@ -42,9 +47,8 @@ exports.main = async (event) => {
   const answers = await db.collection('answers')
     .where({ question_id: current._id })
     .get();
-  const partnerAnswers = answers.data.filter(a => a.user_openid !== OPENID);
-  if (partnerAnswers.length > 0) {
-    throw new Error('partner already answered');
+  if (answers.data.length > 0) {
+    throw new Error('already answered, cannot swap');
   }
 
   const pool = questionsData.questions.filter(q =>

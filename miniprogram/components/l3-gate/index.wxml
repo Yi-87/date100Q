@@ -1,15 +1,15 @@
 <view class="gate">
   <view class="icon">
-    <text>🔒</text>
+    <text class="icon-text">🔒</text>
   </view>
   <text class="title">今天的问题涉及更深层的交流</text>
   <text class="desc">双方都确认准备好后，才能看到题目</text>
   <view class="status">
     <text>你：{{myReady ? '已准备' : '未准备'}}</text>
-    <text>TA：{{readyOpenids.length >= 2 ? '已准备' : '未准备'}}</text>
+    <text>TA：{{myReady ? (readyOpenids.length >= 2 ? '已准备' : '未准备') : (readyOpenids.length >= 1 ? '已准备' : '未准备')}}</text>
   </view>
-  <button wx:if="{{!myReady}}" bindtap="onReady">我准备好了</button>
+  <button wx:if="{{!myReady}}" bindtap="onReady" class="gate-btn">我准备好了</button>
   <view wx:else class="waiting-text">
-    <text>等待对方确认...</text>
+    <text class="waiting-text-content">等待对方确认...</text>
   </view>
 </view>

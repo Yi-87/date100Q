@@ -21,7 +21,7 @@ test('answer/submit: saves answer and returns waiting when partner not answered'
   }]);
 
   const handler = require('../../cloudfunctions/answer-submit/index');
-  const result = await handler.main({ question_id: 'dq_001', content: '和TA一起看日落' });
+  const result = await handler.main({ question_id: 'S-01', content: '和TA一起看日落' });
 
   expect(result.status).toBe('waiting');
 
@@ -29,6 +29,7 @@ test('answer/submit: saves answer and returns waiting when partner not answered'
   expect(answers.length).toBe(1);
   expect(answers[0].content).toBe('和TA一起看日落');
   expect(answers[0].user_openid).toBe('openid_user_a');
+  expect(answers[0].question_id).toBe('dq_001');
 
   const dqs = getDB('daily_questions');
   expect(dqs[0].status).toBe('half_answered');
@@ -48,7 +49,7 @@ test('answer/submit: sets status to revealed when both partners answered', async
   }]);
 
   const handler = require('../../cloudfunctions/answer-submit/index');
-  const result = await handler.main({ question_id: 'dq_002', content: '我后答' });
+  const result = await handler.main({ question_id: 'S-01', content: '我后答' });
 
   expect(result.status).toBe('revealed');
 
@@ -65,7 +66,7 @@ test('answer/submit: rejects empty content', async () => {
   }]);
 
   const handler = require('../../cloudfunctions/answer-submit/index');
-  await expect(handler.main({ question_id: 'dq_003', content: '' })).rejects.toThrow('content required');
+  await expect(handler.main({ question_id: 'S-01', content: '' })).rejects.toThrow('content required');
 });
 
 test('answer/submit: rejects duplicate submission', async () => {
@@ -81,5 +82,5 @@ test('answer/submit: rejects duplicate submission', async () => {
   }]);
 
   const handler = require('../../cloudfunctions/answer-submit/index');
-  await expect(handler.main({ question_id: 'dq_004', content: '再答一次' })).rejects.toThrow('already answered');
+  await expect(handler.main({ question_id: 'S-01', content: '再答一次' })).rejects.toThrow('already answered');
 });

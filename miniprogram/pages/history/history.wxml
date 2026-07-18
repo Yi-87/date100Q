@@ -1,14 +1,89 @@
 <view class="page">
-  <view wx:if="{{items.length === 0}}" class="empty">
-    <text>还没有解锁的记录</text>
+  <view class="tabs">
+    <view class="tab {{tab === 'current' ? 'active' : ''}}" bindtap="onTabCurrent">当前关系</view>
+    <view class="tab {{tab === 'past' ? 'active' : ''}}" bindtap="onTabPast">过往关系</view>
   </view>
-  <view wx:for="{{months}}" wx:key="*this" class="month-group">
-    <text class="month-label">{{index}}</text>
-    <view wx:for="{{item}}" wx:key="question_id" wx:for-item="q" class="history-card">
-      <text class="q-text">{{q.text}}</text>
-      <view class="answers">
-        <text class="my">我：{{q.my_answer}}</text>
-        <text class="partner">TA：{{q.partner_answer}}</text>
+
+  <view wx:if="{{tab === 'current'}}">
+    <view wx:if="{{loading}}" class="loading">
+      <text class="loading-text">加载中...</text>
+    </view>
+    <view wx:elif="{{errorMsg}}" class="error">
+      <text class="error-text">{{errorMsg}}</text>
+      <button class="retry-btn" bindtap="onRetry">重试</button>
+    </view>
+    <view wx:elif="{{items.length === 0}}" class="empty">
+      <text>还没有解锁的记录</text>
+    </view>
+    <view wx:else>
+      <view wx:for="{{months}}" wx:key="index" class="month-group">
+        <text class="month-label">{{index}}</text>
+        <view wx:for="{{item}}" wx:key="question_id" wx:for-item="q" class="history-card">
+          <text class="q-text">{{q.text}}</text>
+          <view class="answers">
+            <text class="my">我：{{q.my_answer}}</text>
+            <text class="partner">TA：{{q.partner_answer}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:elif="{{tab === 'past'}}">
+    <view wx:if="{{pastLoading}}" class="loading">
+      <text class="loading-text">加载中...</text>
+    </view>
+    <view wx:elif="{{pastError}}" class="error">
+      <text class="error-text">{{pastError}}</text>
+      <button class="retry-btn" bindtap="onPastRetry">重试</button>
+    </view>
+    <view wx:elif="{{pastCouples.length === 0}}" class="empty">
+      <text>还没有过往关系</text>
+    </view>
+    <view wx:elif="{{viewingPast}}">
+      <view class="past-header" bindtap="onBackToPastList">
+        <text class="back-arrow">‹</text>
+        <text class="back-text">返回过往关系列表</text>
+      </view>
+      <view wx:if="{{pastItems.length === 0}}" class="empty">
+        <text>这段关系还没有解锁的记录</text>
+      </view>
+      <view wx:else>
+        <view wx:for="{{pastMonths}}" wx:key="index" class="month-group">
+          <text class="month-label">{{index}}</text>
+          <view wx:for="{{item}}" wx:key="question_id" wx:for-item="q" class="history-card past-card">
+            <text class="q-text">{{q.text}}</text>
+            <view class="answers">
+              <text class="my">我：{{q.my_answer}}</text>
+              <text class="partner">TA：{{q.partner_answer}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view wx:for="{{pastCouples}}" wx:key="partner_openid" class="past-couple-card">
+        <view class="past-couple-main" bindtap="onViewPast" data-openid="{{item.partner_openid}}">
+          <view class="past-couple-info">
+            <text class="past-stage">{{item.segments_count}}段关系 · 共 {{item.total_answered_count}} 条回答</text>
+            <text class="past-date">{{item.dateRange}}</text>
+          </view>
+          <text class="past-arrow">›</text>
+        </view>
+        <view class="past-couple-actions">
+          <text class="past-delete-btn" bindtap="onDeletePast" data-openid="{{item.partner_openid}}" data-index="{{index}}">删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showDeleteConfirm}}" class="modal-mask" bindtap="onCancelDelete">
+    <view class="modal-content" catchtap="">
+      <text class="modal-title">删除过往关系</text>
+      <text class="modal-desc">删除后你将无法再看到这段过往关系的历史记录，但对方仍保留自己的记录。此操作不可撤销。</text>
+      <view class="modal-buttons">
+        <button class="modal-cancel-btn" bindtap="onCancelDelete">取消</button>
+        <button class="modal-confirm-btn" bindtap="onConfirmDelete">确定删除</button>
       </view>
     </view>
   </view>

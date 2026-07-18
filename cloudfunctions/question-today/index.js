@@ -12,11 +12,40 @@ function getTodayDate() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function pickQuestion(stage, recentDimensionIds) {
-  const pool = questionsData.questions.filter(q =>
+const SENSITIVITY_ORDER = { L0: 0, L1: 1, L2: 2, L3: 3 };
+
+function pickQuestion(stage, recentDimensionIds, difficulty, l3Enabled) {
+  let pool = questionsData.questions.filter(q =>
     q.stage === stage && !recentDimensionIds.includes(q.dimension)
   );
+
+  // 难度筛选
+  if (difficulty && difficulty !== 'all') {
+    const maxLevel = SENSITIVITY_ORDER[difficulty];
+    if (maxLevel !== undefined) {
+      pool = pool.filter(q => SENSITIVITY_ORDER[q.sensitivity] <= maxLevel);
+    }
+  }
+
+  // L3 开关
+  if (!l3Enabled) {
+    pool = pool.filter(q => q.sensitivity !== 'L3');
+  }
+
   if (pool.length === 0) {
+    // 放宽条件：不考虑维度去重，但仍遵守难度和L3设置
+    pool = questionsData.questions.filter(q => {
+      if (q.stage !== stage) return false;
+      if (difficulty && difficulty !== 'all') {
+        const maxLevel = SENSITIVITY_ORDER[difficulty];
+        if (maxLevel !== undefined && SENSITIVITY_ORDER[q.sensitivity] > maxLevel) return false;
+      }
+      if (!l3Enabled && q.sensitivity === 'L3') return false;
+      return true;
+    });
+  }
+  if (pool.length === 0) {
+    // 最后兜底：同阶段任意题
     return questionsData.questions.find(q => q.stage === stage) || null;
   }
   return pool[Math.floor(Math.random() * pool.length)];
@@ -25,6 +54,7 @@ function pickQuestion(stage, recentDimensionIds) {
 exports.main = async (event) => {
   const { OPENID } = cloud.getWXContext();
   const db = cloud.database();
+  const _ = db.command;
   const today = getTodayDate();
 
   const users = await db.collection('users').where({ openid: OPENID }).get();
@@ -33,13 +63,16 @@ exports.main = async (event) => {
   }
 
   const coupleId = users.data[0].couple_id;
-  const rooms = await db.collection('couple_rooms').doc(coupleId).get();
-  if (rooms.data.length === 0) {
+  let room;
+  try {
+    const rooms = await db.collection('couple_rooms').doc(coupleId).get();
+    room = rooms.data;
+  } catch (e) {
     throw new Error('couple room not found');
   }
-
-  const room = rooms.data[0];
   const stage = room.stage || 'love';
+  const difficulty = room.difficulty || 'all';
+  const l3Enabled = room.l3_enabled || false;
 
   const existing = await db.collection('daily_questions')
     .where({ couple_id: coupleId, date: today })
@@ -52,10 +85,17 @@ exports.main = async (event) => {
       dimension: dq.dimension,
       stage: dq.stage,
       sensitivity: dq.sensitivity,
-      status: dq.status
+      status: dq.status,
+      difficulty,
+      l3_enabled: l3Enabled
     };
     if (dq.sensitivity === 'L3') {
       result.ready_openids = dq.ready_openids || [];
+      result.my_ready = (dq.ready_openids || []).includes(OPENID);
+      if (dq.status === 'revealed') {
+        const question = questionsData.questions.find(q => q.id === dq.question_id);
+        if (question) result.text = question.text;
+      }
     } else {
       result.text = dq.text;
     }
@@ -64,14 +104,12 @@ exports.main = async (event) => {
 
   const fourteenDaysAgo = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
   const recent = await db.collection('daily_questions')
-    .where({ couple_id: coupleId })
+    .where({ couple_id: coupleId, date: _.gte(fourteenDaysAgo) })
     .get();
 
-  const recentDimensionIds = recent.data
-    .filter(r => r.date >= fourteenDaysAgo)
-    .map(r => r.dimension);
+  const recentDimensionIds = recent.data.map(r => r.dimension);
 
-  const question = pickQuestion(stage, recentDimensionIds);
+  const question = pickQuestion(stage, recentDimensionIds, difficulty, l3Enabled);
   if (!question) {
     return { question_id: null, text: '今天休息一天', status: 'empty' };
   }
@@ -97,10 +135,13 @@ exports.main = async (event) => {
     dimension: question.dimension,
     stage: question.stage,
     sensitivity: question.sensitivity,
-    status: 'pending'
+    status: 'pending',
+    difficulty,
+    l3_enabled: l3Enabled
   };
   if (question.sensitivity === 'L3') {
     result.ready_openids = [];
+    result.my_ready = false;
   } else {
     result.text = question.text;
   }

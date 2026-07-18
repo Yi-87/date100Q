@@ -1,0 +1,374 @@
+{
+  "project": {
+    "name": "恋爱结婚100问",
+    "path": "d:\\code\\date100Q\\恋爱结婚100问",
+    "operation": "create",
+    "deviceType": "mobile",
+    "language": "zh-CN",
+    "dashboardMode": false,
+    "replicationMode": null,
+    "sourceUrl": null,
+    "visualSpecExcerpt": null,
+    "styleDefinitionBrief": "情侣问答小程序，温暖手帐风，奶油底色+陶土红主色，纸质感卡片，亲密有温度的视觉体验，像情侣共同书写的日记本",
+    "designRead": "mini-program / young couples / warm journal / low-medium density / avoid cold corporate",
+    "designDials": {
+      "layoutVariance": 2,
+      "motionIntensity": 1,
+      "visualDensity": 2
+    },
+    "styleContinuityAnchors": {
+      "colorSystem": {
+        "primaryColorRole": "陶土红 #c95f4a 用于主CTA、选中态和关键交互元素",
+        "brandHuePolicy": "free-explore uses no secondary/accent brand hue; identities/categories use neutral or primary tints",
+        "stateColors": "success #5b8a3a, warning #b07a2c, error #c95f4a, info #5a7fa0"
+      },
+      "shapeSystem": "圆角卡片 12-16px, 全圆按钮, 整体柔软亲和",
+      "typographySystem": "PingFang SC + Noto Sans SC, 15px base, 1.6 line-height, 中文优先",
+      "spacingSystem": "4px base grid, 16px/24px/32px common sections",
+      "componentLanguage": "纸质卡片, 细线分割, 温暖边框, 微弱阴影(<=0.04 alpha)",
+      "surfaceAndDepth": "border-first static surfaces, shadow only for float/modal (<=0.08 alpha)",
+      "imageryAndIconography": "无装饰图片, 使用排版/图标/色块/间距表达视觉层次",
+      "interactionTone": "轻柔反馈, 简洁动效"
+    },
+    "sharedProjectShellContract": {
+      "navigationShell": "底部TabBar导航: 首页/历史/我的, 毛玻璃或纯白底, 选中态用primary色+微弱背景",
+      "primaryColorSystem": "single primary #c95f4a; no secondary/accent brand hue",
+      "typographySystem": "PingFang SC / Noto Sans SC / sans-serif, 15px body, 1.6 line-height",
+      "radiusScale": "sm 4px, md 8px, lg 12px, xl 16px, full 9999px",
+      "surfaceDepthModel": "border or surface layering first; static shadow alpha <= 0.04; float shadow alpha <= 0.08",
+      "ctaStyle": "pill-shaped full-radius, 44px height, primary fill or warm-bg secondary, 500 weight",
+      "alignmentRules": "mobile single-column, 20px horizontal padding, centered text blocks"
+    },
+    "generationTree": {
+      "root": {
+        "nodeId": "gen-project-shell",
+        "kind": "project-shell",
+        "pageIds": ["page-index", "page-answer", "page-pair", "page-history", "page-profile"],
+        "output": "partials/project-shell.html",
+        "sharedRegions": ["tabBar", "pageFrame"],
+        "privateRegions": [],
+        "mutableSlots": ["activeTab", "pageTitle"],
+        "status": "planned",
+        "children": [
+          {
+            "nodeId": "gen-page-index",
+            "kind": "page-leaf",
+            "pageIds": ["page-index"],
+            "output": "pages/index.html",
+            "sharedRegions": [],
+            "privateRegions": ["首页主体内容: 问题卡片/等待卡片/L3门禁/空状态"],
+            "mutableSlots": ["activeTab"],
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-answer",
+            "kind": "page-leaf",
+            "pageIds": ["page-answer"],
+            "output": "pages/answer.html",
+            "sharedRegions": [],
+            "privateRegions": ["答题表单/等待/已解锁"],
+            "mutableSlots": ["activeTab"],
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-pair",
+            "kind": "page-leaf",
+            "pageIds": ["page-pair"],
+            "output": "pages/pair.html",
+            "sharedRegions": [],
+            "privateRegions": ["配对选择/邀请码/输入码"],
+            "mutableSlots": ["activeTab"],
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-history",
+            "kind": "page-leaf",
+            "pageIds": ["page-history"],
+            "output": "pages/history.html",
+            "sharedRegions": [],
+            "privateRegions": ["历史记录列表/空状态"],
+            "mutableSlots": ["activeTab"],
+            "status": "planned",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-profile",
+            "kind": "page-leaf",
+            "pageIds": ["page-profile"],
+            "output": "pages/profile.html",
+            "sharedRegions": [],
+            "privateRegions": ["阶段选择/解绑区域"],
+            "mutableSlots": ["activeTab"],
+            "status": "planned",
+            "children": []
+          }
+        ]
+      }
+    }
+  },
+  "designSource": {
+    "operatingMode": "free-explore",
+    "libraryIdentity": null,
+    "cssFilePath": "d:\\code\\date100Q\\恋爱结婚100问\\colors_and_type.css",
+    "brandPrefix": "",
+    "themeMode": "light",
+    "designDecisionSummary": "温暖手帐风，奶油底 #faf6f1，陶土红主色 #c95f4a，纸质卡片，圆角柔和，情侣亲密感",
+    "styleConstraints": {
+      "radiusMax": 16,
+      "spacingBase": 4,
+      "fontSizeBody": 15,
+      "fontSizeMin": 11,
+      "controlHeightDefault": 44,
+      "controlHeightLarge": 48
+    }
+  },
+  "pages": [
+    {
+      "nodeId": "page-index",
+      "slug": "index",
+      "title": "首页 · 今日一问",
+      "htmlSrc": "pages/index.html",
+      "pageIndex": 1,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "task-driven",
+      "businessScenario": "每日核心页面，展示今日问题，引导用户回答",
+      "visualNorthStar": "像翻开一封温暖的信，问题卡片是视觉焦点，居中突出，周围留白营造仪式感",
+      "compositionPattern": null,
+      "continuityAnchors": ["底部TabBar", "纸质卡片风格", "主色CTA按钮"],
+      "libraryRestraintMode": false,
+      "componentPlan": [],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": true,
+      "qualityRisks": []
+    },
+    {
+      "nodeId": "page-answer",
+      "slug": "answer",
+      "title": "答题页 · 写下答案",
+      "htmlSrc": "pages/answer.html",
+      "pageIndex": 2,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "task-driven",
+      "businessScenario": "用户书写答案的沉浸式页面，需要安静专注的书写氛围",
+      "visualNorthStar": "像在日记本上写字，大面积书写区域，柔和的纸质背景，底部固定提交按钮",
+      "compositionPattern": null,
+      "continuityAnchors": ["底部TabBar", "纸质卡片风格", "主色CTA按钮"],
+      "libraryRestraintMode": false,
+      "componentPlan": [],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": true,
+      "qualityRisks": []
+    },
+    {
+      "nodeId": "page-pair",
+      "slug": "pair",
+      "title": "配对页 · 连接彼此",
+      "htmlSrc": "pages/pair.html",
+      "pageIndex": 3,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "task-driven",
+      "businessScenario": "情侣配对流程，邀请或加入，建立连接",
+      "visualNorthStar": "温馨的连接仪式感，两个选项清晰呈现，邀请码展示突出，像递出一张情书",
+      "compositionPattern": null,
+      "continuityAnchors": ["底部TabBar", "纸质卡片风格", "主色CTA按钮"],
+      "libraryRestraintMode": false,
+      "componentPlan": [],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": true,
+      "qualityRisks": []
+    },
+    {
+      "nodeId": "page-history",
+      "slug": "history",
+      "title": "历史页 · 我们的足迹",
+      "htmlSrc": "pages/history.html",
+      "pageIndex": 4,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "information-dense",
+      "businessScenario": "浏览已解锁的问答记录，按月分组，回顾共同答案",
+      "visualNorthStar": "像翻阅一本共同记录的日记，月份分组清晰，卡片内两人的答案用不同暖色区分，一深一浅",
+      "compositionPattern": null,
+      "continuityAnchors": ["底部TabBar", "纸质卡片风格", "主色CTA按钮"],
+      "libraryRestraintMode": false,
+      "componentPlan": [],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": true,
+      "qualityRisks": []
+    },
+    {
+      "nodeId": "page-profile",
+      "slug": "profile",
+      "title": "个人页 · 我的",
+      "htmlSrc": "pages/profile.html",
+      "pageIndex": 5,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "information-dense",
+      "businessScenario": "设置当前恋爱阶段，管理配对关系",
+      "visualNorthStar": "简洁的设置感，阶段选择器是核心交互，三个选项像日记本上的标签页，解绑操作克制呈现",
+      "compositionPattern": null,
+      "continuityAnchors": ["底部TabBar", "纸质卡片风格", "主色CTA按钮"],
+      "libraryRestraintMode": false,
+      "componentPlan": [],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": true,
+      "qualityRisks": []
+    }
+  ],
+  "assets": [],
+  "wiringPlan": [
+    {
+      "sourceNodeId": "page-index",
+      "domId": "cta-start-answer",
+      "targetPageId": "page-answer"
+    },
+    {
+      "sourceNodeId": "page-index",
+      "domId": "cta-go-pair",
+      "targetPageId": "page-pair"
+    },
+    {
+      "sourceNodeId": "page-pair",
+      "domId": "cta-pair-success",
+      "targetPageId": "page-index"
+    },
+    {
+      "sourceNodeId": "page-answer",
+      "domId": "cta-submit-answer",
+      "targetPageId": "page-history"
+    }
+  ],
+  "hiddenInteractionPlan": [
+    {
+      "sourceNodeId": "page-index",
+      "domId": "nav-history",
+      "targetPageId": "page-history",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-index",
+      "domId": "nav-profile",
+      "targetPageId": "page-profile",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-answer",
+      "domId": "nav-home",
+      "targetPageId": "page-index",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-answer",
+      "domId": "nav-history",
+      "targetPageId": "page-history",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-answer",
+      "domId": "nav-profile",
+      "targetPageId": "page-profile",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-pair",
+      "domId": "nav-home",
+      "targetPageId": "page-index",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-pair",
+      "domId": "nav-history",
+      "targetPageId": "page-history",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-pair",
+      "domId": "nav-profile",
+      "targetPageId": "page-profile",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-history",
+      "domId": "nav-home",
+      "targetPageId": "page-index",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-history",
+      "domId": "nav-profile",
+      "targetPageId": "page-profile",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-profile",
+      "domId": "nav-home",
+      "targetPageId": "page-index",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    },
+    {
+      "sourceNodeId": "page-profile",
+      "domId": "nav-history",
+      "targetPageId": "page-history",
+      "hideEdge": true,
+      "reason": "底部TabBar导航"
+    }
+  ]
+}

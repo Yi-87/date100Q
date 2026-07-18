@@ -1,0 +1,9 @@
+{
+  "name": "test-mockPair",
+  "version": "1.0.0",
+  "description": "测试用：模拟配对，无需真实第二人",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

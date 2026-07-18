@@ -1,32 +1,101 @@
+/* 答题页 — 写下答案 */
+
 .page {
-  padding: 32rpx;
+  padding: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-.answer-form textarea {
+
+.loading {
+  text-align: center;
+  margin-top: 400rpx;
+}
+.loading-text {
+  color: var(--muted);
+  font-size: var(--text-base);
+}
+.error {
+  text-align: center;
+  margin-top: 400rpx;
+  color: var(--error);
+  font-size: var(--text-sm);
+}
+
+/* 编辑态 */
+.answer-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+  padding-bottom: 0;
+}
+.question-header {
+  margin-bottom: 32rpx;
+  padding: 24rpx 32rpx;
+  background: var(--bg2);
+  border-radius: var(--r-md);
+  border-left: 6rpx solid var(--accent);
+}
+.question-text {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--ink2);
+  line-height: 1.6;
+}
+.question-meta {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--faint);
+  margin-top: 8rpx;
+}
+.answer-textarea {
+  flex: 1;
   width: 100%;
-  min-height: 400rpx;
-  padding: 24rpx;
-  background: #fff;
-  border-radius: 16rpx;
+  min-height: 480rpx;
+  padding: 32rpx;
+  background: var(--bg-card);
+  border-radius: var(--r-lg);
   border: 1rpx solid var(--rule);
-  font-size: 30rpx;
+  font-size: var(--text-base);
+  line-height: 1.8;
+  color: var(--ink);
   box-sizing: border-box;
+  font-family: var(--font-body);
 }
 .counter {
   display: block;
   text-align: right;
-  color: var(--muted);
-  font-size: 24rpx;
-  margin: 12rpx 0 32rpx;
+  color: var(--faint);
+  font-size: var(--text-xs);
+  margin: 16rpx 0 0;
 }
-.answer-form button {
-  background: var(--accent);
-  color: #fff;
-  border-radius: 48rpx;
+.submit-btn {
+  width: 100%;
+  height: var(--cta-height);
+  border-radius: var(--r-full);
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: var(--cta-height);
+  margin-top: 24rpx;
+  margin-bottom: 32rpx;
+}
+.submit-btn[disabled] {
+  opacity: 0.4;
+}
+
+/* 等待态 */
+.waiting {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .done {
   text-align: center;
   color: var(--good);
-  font-size: 30rpx;
-  margin-top: 120rpx;
+  font-size: var(--text-base);
+  margin-top: 240rpx;
 }

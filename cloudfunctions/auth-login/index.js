@@ -2,25 +2,10 @@ const cloud = require('wx-server-sdk');
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 
 exports.main = async (event) => {
-  const { code } = event;
-
-  if (!code) {
-    throw new Error('missing code');
-  }
-
-  let openid, unionid;
-  try {
-    const session = await cloud.openapi.auth.code2Session({
-      jsCode: code
-    });
-    openid = session.openid;
-    unionid = session.unionid || '';
-  } catch (err) {
-    throw new Error('login failed');
-  }
-
+  const { OPENID, UNIONID } = cloud.getWXContext();
   const db = cloud.database();
-  const existing = await db.collection('users').where({ openid }).get();
+
+  const existing = await db.collection('users').where({ openid: OPENID }).get();
 
   if (existing.data.length > 0) {
     const user = existing.data[0];
@@ -33,8 +18,8 @@ exports.main = async (event) => {
   }
 
   const newUser = {
-    openid,
-    unionid,
+    openid: OPENID,
+    unionid: UNIONID || '',
     couple_id: null,
     created_at: new Date().toISOString()
   };

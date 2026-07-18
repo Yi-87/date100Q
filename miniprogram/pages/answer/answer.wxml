@@ -1,8 +1,18 @@
 <view class="page">
-  <view wx:if="{{status === 'editing'}}" class="answer-form">
-    <textarea placeholder="写下你的答案..." value="{{content}}" bindinput="onInput" maxlength="2000" />
+  <view wx:if="{{status === 'loading'}}" class="loading">
+    <text class="loading-text">加载中...</text>
+  </view>
+  <view wx:elif="{{status === 'error'}}" class="error">
+    <text>加载失败，请返回重试</text>
+  </view>
+  <view wx:elif="{{status === 'editing' && question}}" class="answer-form">
+    <view class="question-header">
+      <text class="question-text">{{question.text}}</text>
+      <text class="question-meta">{{dimensionLabel}} · {{question.sensitivity}}</text>
+    </view>
+    <textarea class="answer-textarea" placeholder="写下你的答案..." value="{{content}}" bindinput="onInput" maxlength="2000" />
     <text class="counter">{{content.length}}/2000</text>
-    <button bindtap="onSubmit" disabled="{{submitting}}">提交</button>
+    <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting}}">提交</button>
   </view>
   <view wx:elif="{{status === 'waiting'}}" class="waiting">
     <waiting-card />

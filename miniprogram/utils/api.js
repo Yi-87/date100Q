@@ -16,7 +16,7 @@ function callFn(name, data = {}) {
 }
 
 module.exports = {
-  login: (code) => callFn('auth-login', { code }),
+  login: () => callFn('auth-login'),
   createInvite: () => callFn('pair-createInvite'),
   join: (code) => callFn('pair-join', { code }),
   todayQuestion: () => callFn('question-today'),
@@ -25,5 +25,14 @@ module.exports = {
   revealAnswer: (questionId) => callFn('answer-reveal', { question_id: questionId }),
   historyList: () => callFn('history-list'),
   updateStage: (stage) => callFn('couple-updateStage', { stage }),
-  unbind: (action) => callFn('couple-unbind', { action })
+  unbind: (action) => callFn('couple-unbind', { action }),
+  testMockPair: () => callFn('test-mockPair'),
+  testPartnerAnswer: (content) => callFn('test-partnerAnswer', { content }),
+  coupleInfo: () => callFn('couple-info'),
+  l3Ready: (questionId) => callFn('l3-ready', { question_id: questionId }),
+  updateSettings: (settings) => callFn('couple-settings', settings),
+  reconcile: (action) => callFn('couple-reconcile', { action }),
+  pastCouples: () => callFn('past-couples'),
+  pastHistory: (partnerOpenid) => callFn('past-history', { partner_openid: partnerOpenid }),
+  pastDelete: (partnerOpenid) => callFn('past-delete', { partner_openid: partnerOpenid })
 };

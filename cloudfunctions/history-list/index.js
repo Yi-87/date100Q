@@ -4,6 +4,7 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 exports.main = async (event) => {
   const { OPENID } = cloud.getWXContext();
   const db = cloud.database();
+  const _ = db.command;
 
   const users = await db.collection('users').where({ openid: OPENID }).get();
   if (users.data.length === 0 || !users.data[0].couple_id) {
@@ -17,13 +18,26 @@ exports.main = async (event) => {
     .orderBy('date', 'desc')
     .get();
 
-  const items = await Promise.all(dqs.data.map(async (dq) => {
-    const answers = await db.collection('answers')
-      .where({ question_id: dq._id })
-      .get();
+  if (dqs.data.length === 0) {
+    return { items: [] };
+  }
 
-    const myAnswer = answers.data.find(a => a.user_openid === OPENID);
-    const partnerAnswer = answers.data.find(a => a.user_openid !== OPENID);
+  // 一次性查出所有相关答案，避免 N+1 查询
+  const dqIds = dqs.data.map(d => d._id);
+  const allAnswersRes = await db.collection('answers')
+    .where({ question_id: _.in(dqIds) })
+    .get();
+
+  const answersByQid = {};
+  allAnswersRes.data.forEach(a => {
+    if (!answersByQid[a.question_id]) answersByQid[a.question_id] = [];
+    answersByQid[a.question_id].push(a);
+  });
+
+  const items = dqs.data.map(dq => {
+    const answers = answersByQid[dq._id] || [];
+    const myAnswer = answers.find(a => a.user_openid === OPENID);
+    const partnerAnswer = answers.find(a => a.user_openid !== OPENID);
     const isL3 = dq.sensitivity === 'L3';
 
     return {
@@ -36,7 +50,7 @@ exports.main = async (event) => {
       my_answer: myAnswer ? myAnswer.content : null,
       partner_answer: isL3 ? '（已私密保留）' : (partnerAnswer ? partnerAnswer.content : null)
     };
-  }));
+  });
 
   return { items };
 };
